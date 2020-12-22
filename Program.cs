@@ -150,6 +150,7 @@ namespace ShapeScriptMagic
                             image.InnerText = base64String;
                         }
                     }
+                    File.Delete(zipFile);
                 }
             }
             doc.Save(XmlWriter.Create(Console.OpenStandardOutput(), new XmlWriterSettings

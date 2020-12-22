@@ -13,7 +13,7 @@ The export command extracts the EAShapeScripts from all Stereotypes within a MDG
 Example:
 
 ```
-export "%USERPROFILE%\Desktop\ArchiMate3.xml" "%USERPROFILE%\Desktop\ArchiMateShapes"
+ShapeScriptMagic.exe export "%USERPROFILE%\Desktop\ArchiMate3.xml" "%USERPROFILE%\Desktop\ArchiMateShapes"
 ```
 
 Each Shapescript is stored under the name of the stereotype it belongs to with the fileextension `.shapescript`
@@ -24,5 +24,5 @@ The modify command iterates over all stereotypes in a MDG-File and checks if the
 Example:
 
 ```
-modify "%USERPROFILE%\Desktop\ArchiMate3" "%USERPROFILE%\Desktop\ArchiMate3.xml" > ArchiMate3.xml
+ShapeScriptMagic.exe modify "%USERPROFILE%\Desktop\ArchiMate3" "%USERPROFILE%\Desktop\ArchiMate3.xml" > ArchiMate3.xml
 ```

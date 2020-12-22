@@ -13,6 +13,7 @@ namespace ShapeScriptMagic
     {
         static void Main(string[] args)
         {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             var command = args[0];
             switch (command)
             {
@@ -48,7 +49,8 @@ namespace ShapeScriptMagic
                 FromBase64Transform b64 = new FromBase64Transform(FromBase64TransformMode.IgnoreWhiteSpaces);
                 byte[] inputBytes = Encoding.GetEncoding(1252).GetBytes(base64encoded);
                 byte[] outputBytes = new byte[b64.OutputBlockSize];
-                using (var zipStream = new FileStream(Path.Combine(outputDir, name + ".zip"), FileMode.Create))
+                string zipFile = Path.Combine(outputDir, name + ".zip");
+                using (var zipStream = new FileStream(zipFile, FileMode.Create))
                 {
                     //Transform the data in chunks the size of InputBlockSize. 
                     int i = 0;
@@ -62,7 +64,7 @@ namespace ShapeScriptMagic
                     zipStream.Close();
                     zipStream.Dispose();
 
-                    using (var zipStream2 = new FileStream(Path.Combine(outputDir, name + ".zip"), FileMode.Open))
+                    using (var zipStream2 = new FileStream(zipFile, FileMode.Open))
                     {
                         ZipArchive zipArchive = new ZipArchive(zipStream2);
                         ZipArchiveEntry zipArchiveEntry = zipArchive.GetEntry("str.dat");
@@ -75,6 +77,7 @@ namespace ShapeScriptMagic
                             streamWriter.Close();
                         }
                     }
+                    File.Delete(zipFile);
                 }
             }
         }
